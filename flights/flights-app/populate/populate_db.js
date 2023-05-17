@@ -38,45 +38,11 @@ async function insertFlight(flight) {
 }
 
 
-airports.forEach(async airport => {
-    await insertAirport(airport)
-})
+
+
 
 //TODO: insert all airports from the csv into the db
 
 //TODO: make a function that generates random flights with the args (quantity, timespace)
 
 
-/* class flight {
-
-    constructor(date, airportStartId, airportDestinationId) {
-        this.date = date;
-        this.airportStartId = airportStartId;
-        this.airportDestinationId = airportDestinationId;
-    }
-
-    getFlight() {
-        return {
-            date: this.date,
-            airportStartId: this.airportStartId,
-            airportDestinationId: this.airportDestinationId
-        }
-    }
-
-}
-
-class airport {
-
-    constructor(name, full) {
-        this.name = name;
-        this.full_name = full
-    }
-
-    getAirport() {
-        return {
-            name: this.name,
-            full_name: this.full_name
-        }
-    }
-
-} */

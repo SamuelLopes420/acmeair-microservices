@@ -60,7 +60,7 @@ app.get('/flight', async (req, res) => {
     res.status(200).send({
         airportStart: start_airport,
         airportDestination: destination_airport,
-        flights:flights
+        flights: flights
     })
 })
 
