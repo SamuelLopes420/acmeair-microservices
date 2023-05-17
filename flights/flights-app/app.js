@@ -35,19 +35,19 @@ app.get('/flight', async (req, res) => {
 
     if (!query.start || !query.destination) return res.status(400).send(utils.errors.missing);
 
-    const start_airport = await prisma.airport.findUnique({
+    const start_airport = await prisma.airport.findMany({
         where: {
-            name: query.start
+            'name': query.start
         }
-    })
+    })[0]
 
-    const destination_airport = await prisma.airport.findUnique({
+    const destination_airport = await prisma.airport.findMany({
         where: {
-            name: query.destination
+            'name': query.destination
         }
-    })
+    })[0]
 
-    if(!start_airport || !destination_airport) return res.status(400).send(utils.errors.airportNotExist);
+    if (!start_airport || !destination_airport) return res.status(400).send(utils.errors.airportNotExist);
 
     const flights = await prisma.flight.findMany({
         where: {
@@ -57,7 +57,11 @@ app.get('/flight', async (req, res) => {
         skip: query.page * 10
     })
 
-    res.status(200).send(flights)
+    res.status(200).send({
+        airportStart: start_airport,
+        airportDestination: destination_airport,
+        flights:flights
+    })
 })
 
 

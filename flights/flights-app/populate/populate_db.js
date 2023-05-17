@@ -24,7 +24,30 @@ const airports = [
     { name: "WAW", full_name: "Warsaw Chopin Airport" },
 ];
 
-class flight {
+
+async function insertAirport(airport) {
+    const inserted = await prisma.airport.create({
+        data: airport
+    })
+}
+
+async function insertFlight(flight) {
+    const inserted = await prisma.flight.create({
+        data: flight.getFlight()
+    })
+}
+
+
+airports.forEach(async airport => {
+    await insertAirport(airport)
+})
+
+//TODO: insert all airports from the csv into the db
+
+//TODO: make a function that generates random flights with the args (quantity, timespace)
+
+
+/* class flight {
 
     constructor(date, airportStartId, airportDestinationId) {
         this.date = date;
@@ -56,25 +79,4 @@ class airport {
         }
     }
 
-}
-
-
-async function insertAirport(airport) {
-    const inserted = await prisma.airport.create({
-        data: airport.getAirport()
-    })
-}
-
-async function insertFlight(flight) {
-    const inserted = await prisma.flight.create({
-        data: flight.getFlight()
-    })
-}
-
-
-
-//TODO: insert all airports from the csv into the db
-
-//TODO: make a function that generates random flights with the args (quantity, timespace)
-
-
+} */

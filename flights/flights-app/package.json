@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npx prisma migrate reset --force && npx prisma db push && node app.js"
+    "start": "npx prisma migrate reset --force && npx prisma db push && node ./populate/populate_db.js && node app.js"
   },
   "keywords": [],
   "author": "",
