@@ -24,13 +24,13 @@ app.get('/flight', async (req, res) => {
         page: req.query?.page
     }
 
-    query.page = (!query.page) ? "1" : query.page;
+    query.page = (!query.page) ? "0" : query.page;
     query.date = (!query.date) ? new Date().toLocaleDateString() : query.date;
 
     try {
         query.page = parseInt(query.page)
     } catch (error) {
-        query.page = 1
+        query.page = 0
     }
 
     if (!query.start || !query.destination) return res.status(400).send(utils.errors.missing);
@@ -62,6 +62,33 @@ app.get('/flight', async (req, res) => {
         airportDestination: destination_airport,
         flights: flights
     })
+})
+
+
+app.get('/flights', async (req, res) => {
+
+    let query = {
+        page: req.query?.page || 0
+    }
+
+    if (typeof query.page !== 'number') {
+        try{
+            query.page = parseInt(query.page)
+        }catch(err) {
+            query.page = 0
+        }
+    }
+
+    const flights = await prisma.flight.findMany({
+        skip: query.page * 5
+    })
+
+    res.status(200).send({
+        flights:flights,
+        page: query.page
+    })
+
+
 })
 
 

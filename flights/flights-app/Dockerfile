@@ -11,5 +11,3 @@ COPY . .
 RUN npx prisma generate
 
 CMD ["npm","start"]
-
-EXPOSE $PORT

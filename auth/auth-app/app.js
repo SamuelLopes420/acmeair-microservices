@@ -37,7 +37,7 @@ app.post('/login', async (req, res) => {
 
     if (password === match?.password) {
 
-        const token = jwt.sign(match, SECRET_TOKEN, { expiresIn: '3600s' })
+        const token = jwt.sign(match, SECRET_TOKEN) //add expiration date if needed
 
         return res.status(200).send({
             token: token

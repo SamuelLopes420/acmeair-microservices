@@ -25,6 +25,19 @@ const airports = [
 ];
 
 
+
+const flights = [
+    {airportStartId:1, airportDestinationId:2},
+    {airportStartId:4, airportDestinationId:2},
+    {airportStartId:1, airportDestinationId:2},
+    {airportStartId:12, airportDestinationId:2},
+    {airportStartId:1, airportDestinationId:11},
+    {airportStartId:10, airportDestinationId:2},
+    {airportStartId:6, airportDestinationId:9},
+    {airportStartId:15, airportDestinationId:12}
+]
+
+
 async function insertAirport(airport) {
     const inserted = await prisma.airport.create({
         data: airport
@@ -33,10 +46,18 @@ async function insertAirport(airport) {
 
 async function insertFlight(flight) {
     const inserted = await prisma.flight.create({
-        data: flight.getFlight()
+        data: flight
     })
 }
 
+
+airports.forEach(async (airport) => {
+    await insertAirport(airport)
+})
+
+flights.forEach(async (flight) => {
+    await insertFlight(flight)
+})
 
 
 
