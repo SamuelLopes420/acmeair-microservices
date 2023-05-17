@@ -2,14 +2,13 @@ version: '3.1'
 
 services:
 
-
   database:
     image: mysql:8
     command: --default-authentication-plugin=mysql_native_password
     restart: unless-stopped
     environment:
       - MYSQL_ROOT_PASSWORD=secret
-      - MYSQL_DATABASE=auth
+      - MYSQL_DATABASE=flights
     ports:
       - 3306:3306
     volumes:
@@ -22,8 +21,8 @@ services:
     restart: unless-stopped
     environment:
       - PORT=8086
-      - DATABASE_URL=mysql://root:secret@database:3306/auth
-    build: ./auth-app
+      - DATABASE_URL=mysql://root:secret@database:3306/flights
+    build: ./flights-app
     ports:
       - 8086:8086
     #To keep the terminal open after running
