@@ -1,0 +1,25 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Airport {
+  id Int @id @default(autoincrement())
+  name String
+  full_name String
+  flights Flight[]
+}
+
+model Flight {
+  id Int @id @default(autoincrement())
+  date DateTime @default(now())
+  airportStart Airport @relation(fields: [airportStartId], references: [id])
+  airportStartId Int
+  airportDestinationId Int
+
+}
