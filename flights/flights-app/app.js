@@ -72,9 +72,9 @@ app.get('/flights', async (req, res) => {
     }
 
     if (typeof query.page !== 'number') {
-        try{
+        try {
             query.page = parseInt(query.page)
-        }catch(err) {
+        } catch (err) {
             query.page = 0
         }
     }
@@ -84,7 +84,7 @@ app.get('/flights', async (req, res) => {
     })
 
     res.status(200).send({
-        flights:flights,
+        flights: flights,
         page: query.page
     })
 
