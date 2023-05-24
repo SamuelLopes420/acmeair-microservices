@@ -1,7 +1,0 @@
-GET http://localhost:8087/booking HTTP/1.1
-Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJzYW1AZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmEkMDQkMllGdjNiaFRyNkp1TlJ4emlSa3c4ZURBVjg5SlBBSS9XUjAuNFVvS05zRExqLmZQU29uMEMiLCJpYXQiOjE2ODQzNjM5Mjd9.kmpZGt0e6inR1rnCAbhK-_7mTH9t0HvFNWyXUcXv1nI
-
-{
-    flight_id:1
-}
